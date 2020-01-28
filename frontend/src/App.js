@@ -1,6 +1,6 @@
 import React from 'react';
-import LandingPage from './views/LandingPage'
-import FoodPage from './views/FoodPage'
+import LandingPage from './views/LandingPage.jsx'
+import FoodPage from './views/FoodPage.jsx'
 import './App.css';
 import Drawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List'
@@ -10,11 +10,6 @@ import Container from '@material-ui/core/Container'
 import {BrowserRouter, Route, Switch, Link, useHistory} from 'react-router-dom'
 
 function App() {
-    const history = useHistory()
-
-    function handleClick(path) {
-        history.push(`${path}`)
-    }
 
   return (
     <div className="App">
@@ -29,14 +24,12 @@ function App() {
             </List>
         </Drawer>
         <Container>
-            <BrowserRouter>
                 <div>
                     <Switch>
                         <Route path='/foodpage' component={FoodPage}/>
                         <Route exact path='/' component={LandingPage}/>
                     </Switch>
                 </div>
-            </BrowserRouter>
         </Container>
     </div>
   );
