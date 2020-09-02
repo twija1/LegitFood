@@ -11,14 +11,15 @@ import Grid from '@material-ui/core/Grid'
 
 const useStyles = makeStyles({
     card: {
-        maxWidth: 345
+        maxWidth: 345,
+        textAlign: "center"
     },
     actionArea: {
         height: 150
     }
 });
 
-function FoodItem({name, photo, price}) {
+function FoodItem({name, photo, price, description}) {
     const classes = useStyles();
     return (
         <Card className={classes.card}>
@@ -40,8 +41,7 @@ function FoodItem({name, photo, price}) {
                         variant='body2'
                         color='textSecondary'
                         component='p'>
-                        Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                        across all continents except Antarctica
+                        {description}
                     </Typography>
                 </CardContent>
             </CardActionArea>
