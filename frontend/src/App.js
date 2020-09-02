@@ -13,6 +13,7 @@ import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import {Route, Switch, Link} from 'react-router-dom'
 import makeStyles from "@material-ui/core/styles/makeStyles";
+import MainDrawer from "./views/MainDrawer.jsx";
 
 const useStyles = makeStyles(theme => ({
     appBar: {
@@ -38,21 +39,10 @@ function App() {
                 <Button color="inherit">Login</Button>
             </Toolbar>
         </AppBar>
-        <Drawer
+            <MainDrawer drawerList={drawerList} classes={classes}/>
             className={classes.drawer}
             variant="permanent">
             <div className={classes.toolbar}/>
-            <List>
-                {[{text: 'Main', link: ''}, {text: 'Account', link: '/accountpage'}, {
-                    text: 'Food',
-                    link: '/foodpage'
-                }, {text: 'Delivery', link: '/deliverypage'}].map((category, index) => (
-                    <ListItem button key={index} component={Link} to={category.link}>
-                        <ListItemText primary={category.text}/>
-                    </ListItem>
-                ))}
-            </List>
-        </Drawer>
         <Container className={classes.content}>
             <div className={classes.toolbar}/>
                 <div>
