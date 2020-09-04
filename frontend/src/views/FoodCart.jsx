@@ -14,11 +14,10 @@ import {
     Typography,
     TextField
 } from '@material-ui/core';
-import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import { useDispatch, useSelector } from "react-redux";
 import { DELETE_ITEM, SET_ITEM } from "../store/reducers";
 import TableToolbar from "./EnhancedTableToolbar";
+import CheckOutDialog from "./CheckOutDialog";
 
 const useStyles = makeStyles((theme) => ( {
     table: {
@@ -42,10 +41,19 @@ function FoodCart() {
     const cart = useSelector(state => state.cart);
     const data = useSelector(state => state.data);
     const [checked, setChecked] = useState([]);
+    const [openDialog, setOpenDialog] = useState(false);
     const memoizedCartItems = useMemo(() => cart.map(({ id, quantity }) => ( {
         item: data.find(item => item.id === id),
         quantity
     } )), [cart, data])
+
+    const handleCheckoutOpen = () => {
+        setOpenDialog(true)
+    }
+
+    const handleCheckoutClose = () => {
+        setOpenDialog(false)
+    }
 
     const to2Decimal = (number) => ( ( number * 100 ) / 100 ).toFixed(2)
 
@@ -94,7 +102,6 @@ function FoodCart() {
                         variant='outlined'
                         className={classes.qty}
                     />
-                </IconButton>
             </TableCell>
             <TableCell align="center">{to2Decimal(item.price)}</TableCell>
             <TableCell align='right'>{to2Decimal(item.price * quantity)}</TableCell>
@@ -159,11 +166,13 @@ function FoodCart() {
                         <Button
                             disabled={memoizedCartItems.length === 0}
                             className={classes.checkout}
+                            onClick={handleCheckoutOpen}
                         >
                             Checkout
                         </Button>
                     </Paper>
             }
+            <CheckOutDialog open={openDialog} onClose={handleCheckoutClose}/>
         </div>
     )
 }
