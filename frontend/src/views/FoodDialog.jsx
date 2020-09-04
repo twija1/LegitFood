@@ -43,6 +43,7 @@ function FoodDialog({ onClose, open, item }) {
 
     const handleClick = () => {
         dispatch({type: INCREMENT, args: { itemId: item.id } })
+        onClose()
     }
 
     return (
