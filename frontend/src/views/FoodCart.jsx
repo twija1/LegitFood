@@ -10,7 +10,9 @@ import {
     Paper,
     makeStyles,
     Checkbox,
-    Button, Typography
+    Button,
+    Typography,
+    TextField
 } from '@material-ui/core';
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
@@ -29,6 +31,9 @@ const useStyles = makeStyles((theme) => ( {
     checkout: {
         float: 'right'
     },
+    qty: {
+        width: 80
+    }
 } ))
 
 function FoodCart() {
@@ -62,6 +67,13 @@ function FoodCart() {
             : setChecked(memoizedCartItems.map(({ item }) => item.id))
     }
 
+    const handleQuantityChange = (e, id) => {
+        const qty = Math.floor(e.target.value)
+        qty > 0
+            ? dispatch({type: SET_ITEM, args: {itemId: id, quantity: qty}})
+            : dispatch({type: SET_ITEM, args: {itemId: id, quantity: 1}})
+    }
+
     const tableBody = memoizedCartItems.map(({ item, quantity }) =>
         <TableRow key={item.id}>
             <TableCell padding='checkbox'>
@@ -74,14 +86,14 @@ function FoodCart() {
                 {item.name}
             </TableCell>
             <TableCell align='center'>
-                <IconButton
-                    onClick={() => dispatch({ type: SET_ITEM, args: { itemId: item.id, quantity: quantity - 1 } })}>
-                    <ArrowLeftIcon/>
-                </IconButton>
-                {quantity}
-                <IconButton
-                    onClick={() => dispatch({ type: SET_ITEM, args: { itemId: item.id, quantity: quantity + 1 } })}>
-                    <ArrowRightIcon/>
+                    <TextField
+                        type='number'
+                        value={quantity}
+                        onChange={(e) => handleQuantityChange(e, item.id)}
+                        size='small'
+                        variant='outlined'
+                        className={classes.qty}
+                    />
                 </IconButton>
             </TableCell>
             <TableCell align="center">{to2Decimal(item.price)}</TableCell>
@@ -104,7 +116,8 @@ function FoodCart() {
                             <Table classes={classes.table} aria-label='spanning table' size="small">
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell align='center' colSpan={4}>
+                                        <TableCell/>
+                                        <TableCell align='left' colSpan={3}>
                                             Details
                                         </TableCell>
                                         <TableCell align='right'>
