@@ -66,7 +66,6 @@ function App() {
             <CssBaseline/>
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
-                    <Button color="inherit">Login</Button>
                 </Toolbar>
             </AppBar>
             <MainDrawer drawerList={drawerList} classes={classes}/>
