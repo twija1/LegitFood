@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import FoodItem from './FoodItem.jsx'
 import Grid from '@material-ui/core/Grid'
 import FoodDialog from './FoodDialog'
 import { useSelector } from "react-redux";
 
 function FoodPage() {
-    const [dialogState, setDialogState] = React.useState({ open: false, data: {} });
+    const [dialogState, setDialogState] = useState({ open: false, data: {} });
     const foodData = useSelector(state => state.data);
 
     const handleClickOpen = (item) => {
