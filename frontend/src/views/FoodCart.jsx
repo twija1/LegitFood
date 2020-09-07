@@ -1,23 +1,22 @@
 import React, { useMemo, useState } from 'react'
 import {
-    IconButton,
+    Button,
+    Checkbox,
+    makeStyles,
+    Paper,
     Table,
     TableBody,
     TableCell,
     TableContainer,
     TableHead,
     TableRow,
-    Paper,
-    makeStyles,
-    Checkbox,
-    Button,
-    Typography,
     TextField
 } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
 import { DELETE_ITEM, SET_ITEM } from "../store/reducers";
 import TableToolbar from "./EnhancedTableToolbar";
 import CheckOutDialog from "./CheckOutDialog";
+import EmptyCartDialog from "./EmptyCartDialog";
 
 const useStyles = makeStyles((theme) => ( {
     table: {
@@ -41,18 +40,23 @@ function FoodCart() {
     const cart = useSelector(state => state.cart);
     const data = useSelector(state => state.data);
     const [checked, setChecked] = useState([]);
-    const [openDialog, setOpenDialog] = useState(false);
+    const [openCheckoutDialog, setOpenCheckoutDialog] = useState(false);
     const memoizedCartItems = useMemo(() => cart.map(({ id, quantity }) => ( {
         item: data.find(item => item.id === id),
         quantity
     } )), [cart, data])
+    const [openEmptyCartDialog, setOpenEmptyCartDialog] = useState(memoizedCartItems.length === 0);
 
     const handleCheckoutOpen = () => {
-        setOpenDialog(true)
+        setOpenCheckoutDialog(true)
     }
 
     const handleCheckoutClose = () => {
-        setOpenDialog(false)
+        setOpenCheckoutDialog(false)
+    }
+
+    const handleEmptyCartDialogClose = () => {
+        setOpenEmptyCartDialog(false)
     }
 
     const to2Decimal = (number) => ( ( number * 100 ) / 100 ).toFixed(2)
@@ -116,7 +120,7 @@ function FoodCart() {
         <div>
             {
                 memoizedCartItems.length === 0
-                    ? <Typography variant='h6' align='center'>Your cart is empty!</Typography>
+                    ? <EmptyCartDialog open={openEmptyCartDialog} onClose={handleEmptyCartDialogClose}/>
                     : <Paper className={classes.paper}>
                         <TableToolbar numSelected={checked.length} deleteItems={deleteItems}/>
                         <TableContainer component={Paper}>
@@ -172,7 +176,7 @@ function FoodCart() {
                         </Button>
                     </Paper>
             }
-            <CheckOutDialog open={openDialog} onClose={handleCheckoutClose}/>
+            <CheckOutDialog open={openCheckoutDialog} onClose={handleCheckoutClose}/>
         </div>
     )
 }
