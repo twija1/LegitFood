@@ -7,9 +7,7 @@ import {
     ListItemText,
     Container,
     AppBar,
-    Toolbar,
-    Button,
-    CssBaseline,
+    CssBaseline, Typography,
 } from '@material-ui/core'
 import { Route, Switch, Link, Redirect } from 'react-router-dom'
 import makeStyles from "@material-ui/core/styles/makeStyles"
@@ -23,6 +21,7 @@ const drawerWidth = 100;
 const useStyles = makeStyles(theme => ( {
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
+        padding: 16,
     },
     content: {
         flexGrow: 1,
@@ -65,8 +64,9 @@ function App() {
         <div className={classes.root}>
             <CssBaseline/>
             <AppBar position="fixed" className={classes.appBar}>
-                <Toolbar>
-                </Toolbar>
+                <Typography variant='h6'>
+                    LegitFood
+                </Typography>
             </AppBar>
             <MainDrawer drawerList={drawerList} classes={classes}/>
             <Container className={classes.content}>
