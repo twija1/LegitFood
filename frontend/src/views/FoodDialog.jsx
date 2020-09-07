@@ -6,8 +6,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogActions from '@material-ui/core/DialogActions'
 import Button from '@material-ui/core/Button';
-import { useDispatch } from "react-redux";
-import { INCREMENT } from "../store/reducers";
 
 const useStyles = makeStyles({
     card: {
@@ -31,9 +29,8 @@ const useStyles = makeStyles({
     }
 });
 
-function FoodDialog({ onClose, open, item }) {
+function FoodDialog({ onClose, open, item, incrementQuantity }) {
     const classes = useStyles();
-    const dispatch = useDispatch();
 
     const handleClose = () => {
         onClose()
@@ -42,13 +39,20 @@ function FoodDialog({ onClose, open, item }) {
     const allergenes = item.allergens ? item.allergens.join(', ') : '';
 
     const handleClick = () => {
-        dispatch({type: INCREMENT, args: { itemId: item.id } })
+        incrementQuantity(item.id)
         onClose()
     }
 
     return (
-        <Dialog onClose={handleClose} aria-labelledby='simple-dialog-title' open={open} fullWidth='sm'>
-            <DialogTitle>
+        <Dialog
+            onClose={handleClose}
+            open={open}
+            fullWidth='sm'
+        >
+            <DialogTitle
+                style={{ textAlign: "center", fontSize: 50 }}
+                disableTypography
+            >
                 {item.name}
             </DialogTitle>
             <DialogContent className={classes.content}>

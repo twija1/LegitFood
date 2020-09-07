@@ -19,9 +19,14 @@ const useStyles = makeStyles({
     }
 });
 
-function FoodItem({ item, onClick }) {
+function FoodItem({ item, onClick, incrementQuantity }) {
     const classes = useStyles();
     const { id, name, photo, price, description } = item
+
+    const handleClick = () => {
+        incrementQuantity(id);
+    }
+
     return (
         <Card className={classes.card}>
             <CardActionArea onClick={() => onClick(item)}>
@@ -47,21 +52,18 @@ function FoodItem({ item, onClick }) {
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button
-                    size='small'
-                    color='primary'>
-                    Share
-                </Button>
-                <Button
-                    size='small'
-                    color='primary'>
-                    Share
-                </Button>
                 <Grid container justify='space-around'>
-                    <Typography align='center'>
+                    <Button
+                        size='small'
+                        color='primary'
+                        onClick={handleClick}
+                    >
+                        Add to cart
+                    </Button>
+                    <Typography>
                         Price
                     </Typography>
-                    <Typography align='right'>
+                    <Typography>
                         {Number.parseFloat(price).toFixed(2)} zł
                     </Typography>
                 </Grid>
