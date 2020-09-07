@@ -19,11 +19,12 @@ const useStyles = makeStyles({
     }
 });
 
-function FoodItem({name, photo, price, description}) {
+function FoodItem({ item, onClick }) {
     const classes = useStyles();
+    const { id, name, photo, price, description } = item
     return (
         <Card className={classes.card}>
-            <CardActionArea>
+            <CardActionArea onClick={() => onClick(item)}>
                 <CardMedia
                     square
                     image={photo}

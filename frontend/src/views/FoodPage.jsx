@@ -14,10 +14,10 @@ function FoodPage() {
     const handleClose = () => {
         setDialogState({ open: false, data: {} });
     };
-    const dataFoodList = foodData.map((item, index) => {
+    const dataFoodList = foodData.map((item) => {
         return (
-            <Grid item xs={12} sm={4} onClick={() => handleClickOpen(item)}>
-                <FoodItem name={item.name} photo={item.photo} price={item.price} description={item.description} key={index}/>
+            <Grid item xs={12} sm={4}>
+                <FoodItem item={item} key={item.id} onClick={handleClickOpen}/>
             </Grid> )
     });
     return (
