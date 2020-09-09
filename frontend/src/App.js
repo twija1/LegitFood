@@ -11,7 +11,6 @@ import {
 } from '@material-ui/core'
 import { Route, Switch, Link, Redirect } from 'react-router-dom'
 import makeStyles from "@material-ui/core/styles/makeStyles"
-import * as data from './data.json'
 import { useDispatch } from "react-redux";
 import { SET_DATA } from "./store/reducers";
 import MainDrawer from "./views/MainDrawer.jsx";
@@ -45,8 +44,10 @@ function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch({ type: SET_DATA, args: { data: data.food } })
-    })
+        fetch('http://localhost:8080/dishes')
+            .then(response => response.json())
+            .then((data) => dispatch({ type: SET_DATA, args: { data } }))
+    }, [dispatch])
 
     const drawerItems = [
         { text: 'Main', link: '/landing-page' },
@@ -56,7 +57,7 @@ function App() {
 
     const drawerList = drawerItems.map((category, index) => (
         <ListItem alignItems='center' button key={index} component={Link} to={category.link}>
-            <ListItemText style={{textAlign: "center"}} primary={category.text}/>
+            <ListItemText style={{ textAlign: "center" }} primary={category.text}/>
         </ListItem>
     ))
 
