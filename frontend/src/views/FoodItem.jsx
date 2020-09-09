@@ -31,7 +31,6 @@ function FoodItem({ item, onClick, incrementQuantity }) {
         <Card className={classes.card}>
             <CardActionArea onClick={() => onClick(item)}>
                 <CardMedia
-                    square
                     image={photo}
                     title={name}
                     className={classes.actionArea}

@@ -47,20 +47,16 @@ function FoodDialog({ onClose, open, item, incrementQuantity }) {
         <Dialog
             onClose={handleClose}
             open={open}
-            fullWidth='sm'
         >
             <DialogTitle
                 style={{ textAlign: "center", fontSize: 50 }}
                 disableTypography
-            >
-                {item.name}
-            </DialogTitle>
+                children={item.name}
+            />
             <DialogContent className={classes.content}>
                 <img src={item.photo} alt={item.name} className={classes.img}/>
                 <DialogContentText>
-                    <p>
-                        {item.description}
-                    </p>
+                    {item.description}
                     Ingredients: {ingredients}
                 </DialogContentText>
                 <DialogContentText className={classes.allergens}>

@@ -8,7 +8,7 @@ import { INCREMENT } from "../store/reducers";
 function FoodPage() {
     const [dialogState, setDialogState] = useState({ open: false, data: {} });
     const foodData = useSelector(state => state.data);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
     const handleClickOpen = (item) => {
         setDialogState({ open: true, data: item })
@@ -24,14 +24,15 @@ function FoodPage() {
 
     const dataFoodList = foodData.map((item) => {
         return (
-            <Grid item xs={12} sm={4}>
-                <FoodItem item={item} key={item.id} onClick={handleClickOpen} incrementQuantity={incrementQuantity}/>
+            <Grid item xs={12} sm={4} key={item.id}>
+                <FoodItem item={item} onClick={handleClickOpen} incrementQuantity={incrementQuantity}/>
             </Grid> )
     });
     return (
         <Grid container spacing={3}>
             {dataFoodList}
-            <FoodDialog item={dialogState.data} open={dialogState.open} onClose={handleClose} incrementQuantity={incrementQuantity}/>
+            {dialogState.open && <FoodDialog item={dialogState.data} open={dialogState.open} onClose={handleClose}
+                                 incrementQuantity={incrementQuantity}/>}
         </Grid>
     )
 }
