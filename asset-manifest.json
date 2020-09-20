@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/LegitFood/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/LegitFood/static/js/main.3c3831a0.chunk.js",
+    "main.js.map": "/LegitFood/static/js/main.3c3831a0.chunk.js.map",
+    "runtime-main.js": "/LegitFood/static/js/runtime-main.1f9cd6a3.js",
+    "runtime-main.js.map": "/LegitFood/static/js/runtime-main.1f9cd6a3.js.map",
+    "static/js/2.71516f5e.chunk.js": "/LegitFood/static/js/2.71516f5e.chunk.js",
+    "static/js/2.71516f5e.chunk.js.map": "/LegitFood/static/js/2.71516f5e.chunk.js.map",
+    "index.html": "/LegitFood/index.html",
+    "precache-manifest.7d24e0bb92c275b1129b79b4381ec576.js": "/LegitFood/precache-manifest.7d24e0bb92c275b1129b79b4381ec576.js",
+    "service-worker.js": "/LegitFood/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/LegitFood/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.71516f5e.chunk.js.LICENSE.txt": "/LegitFood/static/js/2.71516f5e.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1f9cd6a3.js",
+    "static/js/2.71516f5e.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.3c3831a0.chunk.js"
+  ]
+}
