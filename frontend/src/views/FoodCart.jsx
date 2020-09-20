@@ -17,6 +17,7 @@ import { DELETE_ITEM, SET_ITEM } from "../store/reducers";
 import TableToolbar from "./EnhancedTableToolbar";
 import CheckOutDialog from "./CheckOutDialog";
 import EmptyCartDialog from "./EmptyCartDialog";
+import { addOrder } from "../helpers";
 
 const useStyles = makeStyles((theme) => ( {
     table: {
@@ -116,6 +117,13 @@ function FoodCart() {
         setChecked([])
     }
 
+    const changeIdToDishId = (list) => list.map(({id, quantity}) => ( { dishId: id, quantity }))
+
+    const onOrder = (location, comment) => {
+        console.log(`${location}, ${comment}, ${cart}`)
+        addOrder(changeIdToDishId(cart), location, comment)
+    }
+
     return (
         <div>
             {
@@ -176,7 +184,7 @@ function FoodCart() {
                         </Button>
                     </Paper>
             }
-            <CheckOutDialog open={openCheckoutDialog} onClose={handleCheckoutClose}/>
+            <CheckOutDialog open={openCheckoutDialog} onClose={handleCheckoutClose} onOrder={onOrder}/>
         </div>
     )
 }
