@@ -20,10 +20,16 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: cd frontend/
     - name: Install dependencies
       run: npm ci
       working-directory: frontend
     - name: Build
       run: npm run build --if-present
       working-directory: frontend
+    - name: Push GithubPages
+      uses: peaceiris/actions-gh-pages@v3.6.4
+      with:
+        allow_empty_commit: true
+        force_orphan: true
+        github_token: ${{ secrets.TOKEN }}
+        publish_dir: ./build
