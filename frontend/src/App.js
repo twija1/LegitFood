@@ -9,7 +9,8 @@ import {
     AppBar,
     CssBaseline, Typography,
 } from '@material-ui/core'
-import { Route, Switch, Link, Redirect } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router'
+import { Link } from 'react-router-dom'
 import makeStyles from "@material-ui/core/styles/makeStyles"
 import { useDispatch } from "react-redux";
 import { SET_DATA } from "./store/reducers";
