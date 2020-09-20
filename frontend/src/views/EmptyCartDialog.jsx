@@ -6,10 +6,17 @@ import {
     DialogContentText,
     Button
 } from "@material-ui/core";
+import { useHistory } from 'react-router-dom'
 
 function EmptyCartDialog({ open, onClose }) {
 
+    const history = useHistory()
     const handleClose = () => onClose()
+
+
+    const handleClick = () => {
+        history.push('/food-page')
+    }
 
     return (
         <Dialog
@@ -23,7 +30,7 @@ function EmptyCartDialog({ open, onClose }) {
                     Your Cart is empty!
                 </DialogContentText>
                 <DialogActions>
-                    <Button href='/food-page'>
+                    <Button onClick={handleClick}>
                         Go to food list
                     </Button>
                 </DialogActions>
